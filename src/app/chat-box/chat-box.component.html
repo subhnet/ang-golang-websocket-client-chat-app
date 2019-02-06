@@ -1,0 +1,25 @@
+<div id="wrapper">
+  <div id="menu">
+    <p class="welcome">Welcome, {{loggedUser?.firstName}}<b></b></p>
+    <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+    <div style="clear:both"></div>
+  </div>
+
+  <div id="chatbox">
+    <ul id="messages">
+      <li *ngFor="let message of messages">
+        <span [innerHTML]="isSystemMessage(message)"></span>
+      </li>
+    </ul>
+
+    <div *ngIf="isUserTyping && otherUser">
+      {{otherUser.firstName}} is Typing....
+    </div>
+  </div>
+
+  <form id="inputBox" action="">
+      <input  id="usermsg" [(ngModel)]="chatBox" [ngModelOptions]="{standalone: true}" autocomplete="off" />
+      <button  id="submitmsg"   style="width: 18%" (click)="send()">Send</button>
+  </form> 
+
+</div>
